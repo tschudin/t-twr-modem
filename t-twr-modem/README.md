@@ -1,7 +1,7 @@
 # T-TWR-Modem - howto
 
 This directory contains the source code for a T-TWR modem
-(ESP32-S3). No external dependencies have to be resolved as all
+(ESP32-S3). No external dependencies have to be installed as all
 required Arduino libraries are included in the ```lib``` directory.
 
 ## Howto:
