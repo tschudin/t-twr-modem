@@ -6,7 +6,7 @@ walkie talkie for the UHF band (400-480MHz, 70cm). This frequency range
 includes the license-free PMR bands in Europe as well as the IARU-R1
 70cm radio amateur band. Note that the device can only be operated by
 radio amateurs due to the device characteristics (detachable antenna,
-2W HF power).
+2W RF power).
 
 ![T-TWR r2.1](t-twr-r2.1.jpg)![T-TWR closeup](t-twr-demo.jpg)
 
