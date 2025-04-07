@@ -16,9 +16,9 @@ Baud). Thanks to the use of LDPC forward error correction and CRCs,
 error-free transmission can easily be demonstrated for distances
 beyond one mile, out-of-the box.
 
-Enjoy! HB9HUH, K6CFT
+Enjoy! 73, HB9HUH/K6CFT
 
-## implemented Features
+## Implemented Features
 
 - demonstrates phase-continuous 4-FSK and 2-FSK modulation
 - uses the ESP32-S3 Sigma-Delta modulation for generating the FSK audio signal
