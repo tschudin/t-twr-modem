@@ -8,13 +8,15 @@ includes the license-free PMR bands in Europe as well as the IARU-R1
 radio amateurs due to the device characteristics (detachable antenna,
 2W HF power).
 
-![T-TWR r2.1](t-twr-r2.1.jpg)
+![T-TWR r2.1](t-twr-r2.1.jpg)![T-TWR closeup](t-twr-demo.jpg)
 
 The C code in this repo implements a FSK software modem for the T-TWR
 for up to 1000 bits-per-second data rate (4-FSK/500 Baud, or 2-FSK/600
 Baud). Thanks to the use of LDPC forward error correction and CRCs,
 error-free transmission can easily be demonstrated for distances
 beyond one mile, out-of-the box.
+
+Enjoy! HB9HUH, K6CFT
 
 ## Features
 
@@ -30,7 +32,9 @@ beyond one mile, out-of-the box.
 - uses the CCSDS (Council of the Consultative Committee for Space Data Systems) randomizer/scrambler from 2023
 - uses the 64-bit CCSDS CSMs (Codeblock Sync Marker) for framing
 - uses a 12-bit CRC checksum for aditional protection
-- implements a simple echo-request service for testing connectivity in the field
+- implements a simple echo-request service for testing connectivity in the field: messages include GPC timestamp and location, if available
+- a log of sent and received messages is persisted in flash (on-device flash file system)
+- a command line interface (serial line) permits to inspect the log and display debugging information
 
 
 ## Desirable Features
