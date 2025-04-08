@@ -28,6 +28,7 @@ void report(char *buf, bool quote=false);
 void report_hex(uint8_t *data, int cnt);
 char* gps_to_tim();
 char* gps_to_loc();
+void set_status_msg(char *msg);
 
 /*
 
@@ -794,12 +795,14 @@ void modem_decode(uint16_t ptr, uint16_t cnt)
     report_hex(msg, MESSAGE_BYTE_LENGTH);
     uint8_t ok = 0;
     if (crc == crc12_b91(msg, MESSAGE_BYTE_LENGTH)) {
+        set_status_msg("OK");
         Serial.println("#       crc ok");
-        strcpy(buf+strlen(buf), " crc=ok");
+        strcpy(buf+strlen(buf), ", crc=ok");
         ok = 1;
     } else {
+        set_status_msg("??");
         Serial.println("#       crc mismatch");
-        strcpy(buf+strlen(buf), " crc=fail");
+        strcpy(buf+strlen(buf), ", crc=fail");
         char *cp = (char*)msg;
         while (*cp && (cp - (char*)msg) < 120) {
             if (!isprint(*cp))
@@ -1219,6 +1222,30 @@ void gps_display() // draws date/time/location on screen
 
 // ---------------------------------------------------------------------------
 
+uint64_t end_of_status;
+void set_status_msg(char *msg)
+{
+    static uint16_t status_width;
+    bool refresh = 0;
+
+    if (status_width != 0) {
+        u8g2.setDrawColor(0);
+        u8g2.drawBox(128 - status_width, 0, 128, 12);
+        u8g2.setDrawColor(1);
+        status_width = 0;
+        refresh = true;
+    }
+    if (msg) {
+        end_of_status = millis() + 2000; // timeout when status must be removed
+        u8g2.setFont(u8g2_font_helvR08_tf);
+        status_width = u8g2.getStrWidth(msg);
+        u8g2_print(128 - status_width, 11, msg, false);
+        refresh = true;
+    }
+    if (refresh)
+        u8g2.sendBuffer();
+}
+
 void command_line(void)
 {
     if (!Serial.available())
@@ -1296,6 +1323,11 @@ void command_line(void)
 void loop()
 {
     command_line();
+
+    if (end_of_status && millis() > end_of_status) {
+        set_status_msg(NULL);
+        end_of_status = 0;
+    }
 
     radio_receive(); // serve the ADC
     if (modem_state != MODEM_XMIT)
