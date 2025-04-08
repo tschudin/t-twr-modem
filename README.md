@@ -8,7 +8,8 @@ includes the license-free PMR bands in Europe as well as the IARU-R1
 radio amateurs due to the device characteristics (detachable antenna,
 2W RF power).
 
-![T-TWR r2.1](t-twr-r2.1.jpg)![T-TWR closeup](t-twr-demo.jpg)
+![T-TWR r2.1](t-twr-r2.1.jpg)
+![T-TWR closeup](t-twr-demo.jpg)
 
 The C code in this repo implements a FSK software modem for the T-TWR
 for up to 1000 bits-per-second data rate (4-FSK/500 Baud or 2-FSK/600
@@ -24,11 +25,11 @@ Enjoy! 73, HB9HUH/K6CFT
 - uses the ESP32-S3 Sigma-Delta modulation for generating the FSK audio signal
 - uses the ESP32-S3 hardware-based ADC sampling at 6400 Hz
 - shows the use of the Fast Hartley Transform for analyzing the received audio
+- demonstrates the synthesis of a symbol-level synchronization clock signal, using FHT data
 - demonstrates a real-time waterfall display on the serial line using ASCII ART
 - supports variable-length data packets up to 128 bytes
 - offers configurable Low Density Parity Check (LDPC) forward error correction (256, 512 or 1024 parity bits), resulting in code rates of 4/5, 2/3 or 1/2
 - LDPC decoding is executed on the ESP32
-- demonstrates the synthesis of a bit-level synchronization clock signal
 - uses the CCSDS (Council of the Consultative Committee for Space Data Systems) randomizer/scrambler from 2023
 - uses the 64-bit CCSDS CSMs (Codeblock Sync Marker) for framing
 - uses a 12-bit CRC checksum for aditional protection
