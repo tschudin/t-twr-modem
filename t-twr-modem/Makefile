@@ -6,6 +6,7 @@ all:
 	$(info "use the targets 'compile' and/or 'flash'";)
 
 build/t-twr-modem.ino.bin: t-twr-modem.h util/crc12_b91.h util/fht.h util/adc.h
+	arduino-cli core install esp32:esp32@3.1.1
 	arduino-cli compile -b $(FQBN) --libraries lib --build-path ./build t-twr-modem.ino
 
 compile: build/t-twr-modem.ino.bin
